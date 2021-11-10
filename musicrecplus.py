@@ -41,6 +41,8 @@ def user_most_likes():
 
 
 def delete_preferences(database, username):
+    """Prints the current users preferences on the screen and removes a
+    preference depending on the user's input"""
     count = 1
     string = "Which number would you like to remove? (Enter to cancel)\n"
     while count <= len(list(database[username])):
@@ -57,6 +59,7 @@ def delete_preferences(database, username):
 
 
 def show_preferences(database, username):
+    """Prints the current users preferences on the screen."""
     count = 1
     string = "Here are your current preferences:\n"
     while count <= len(list(database[username])):
