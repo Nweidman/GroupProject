@@ -39,14 +39,36 @@ def how_most_popular():
 def user_most_likes():
     pass
 
+def delete_preferences(username, dic):
+    count=1
+    string="Which number would you like to remove? (Enter to cancel)\n"
+    while count<=len(list(dic[username])):
+        string +=(str(count)+". " + list(dic[username])[count-1]) + "\n"
+        count+=1
+    delete = input(string)
+    if delete.isnumeric() and int(delete)-1 < len(dic[username]) and int(delete)>0:
+        dic[username] = dic[username][0:int(delete)-1] + dic[username][int(delete):]
+        print("Number " + str(delete) + " has been removed!\n")
+    elif delete=="":
+        print("Deletion Cancelled\n")
+    else:
+        print("Invalid choice!\n")
+
+def show_preferences(username, dic):
+    count=1
+    string = "Here are your current preferences:\n"
+    while count<=len(list(dic[username])):
+        string +=(str(count)+". " + list(dic[username])[count-1]) + "\n"
+        count+=1
+    print(string)
 
 def main():
     """Main method for running the music recommender."""
     # Loading data and user
     menu = "Enter a letter to choose an option :\n e - Enter preferences\n r - Get recommendations\n p - Show most " \
-           "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n q - Save and " \
+           "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n d - Delete Preferences\n s - Show Preferences\n q - Save and " \
            "quit\n "
-    filename = "musicrecplus.txt"
+    filename = "musicrecplus_ex2_a.txt"
     database = db_load.load_database(filename)
     username = input("Enter your name ( put a $ symbol after your name if you wish your preferences to remain private "
                      "): ")
@@ -67,6 +89,10 @@ def main():
             how_most_popular()
         elif user_choice == "m":
             user_most_likes()
+        elif user_choice == "d":
+            delete_preferences(username,database)
+        elif user_choice == "s":
+            show_preferences(username,database)
         else:
             print("Invalid choice!\n")
         print(menu)
