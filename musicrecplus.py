@@ -2,9 +2,9 @@
 # Pledge: I pledge my honor that I have abided by the Stevens Honor System.
 
 
-from sort import *  # sort functions
-import database_loader as db_load  # load_database and save_database functions
 import data_manager  # all functions involing interaction with the database
+import database_loader as db_load  # load_database and save_database functions
+from sort import *  # sort functions
 
 
 def enter_preferences(database, username):
@@ -39,34 +39,38 @@ def how_most_popular():
 def user_most_likes():
     pass
 
-def delete_preferences(username, dic):
-    count=1
-    string="Which number would you like to remove? (Enter to cancel)\n"
-    while count<=len(list(dic[username])):
-        string +=(str(count)+". " + list(dic[username])[count-1]) + "\n"
-        count+=1
+
+def delete_preferences(database, username):
+    count = 1
+    string = "Which number would you like to remove? (Enter to cancel)\n"
+    while count <= len(list(database[username])):
+        string += (str(count) + ". " + list(database[username])[count - 1]) + "\n"
+        count += 1
     delete = input(string)
-    if delete.isnumeric() and int(delete)-1 < len(dic[username]) and int(delete)>0:
-        dic[username] = dic[username][0:int(delete)-1] + dic[username][int(delete):]
+    if delete.isnumeric() and int(delete) - 1 < len(database[username]) and int(delete) > 0:
+        database[username] = database[username][0:int(delete) - 1] + database[username][int(delete):]
         print("Number " + str(delete) + " has been removed!\n")
-    elif delete=="":
+    elif delete == "":
         print("Deletion Cancelled\n")
     else:
         print("Invalid choice!\n")
 
-def show_preferences(username, dic):
-    count=1
+
+def show_preferences(database, username):
+    count = 1
     string = "Here are your current preferences:\n"
-    while count<=len(list(dic[username])):
-        string +=(str(count)+". " + list(dic[username])[count-1]) + "\n"
-        count+=1
+    while count <= len(list(database[username])):
+        string += (str(count) + ". " + list(database[username])[count - 1]) + "\n"
+        count += 1
     print(string)
+
 
 def main():
     """Main method for running the music recommender."""
     # Loading data and user
     menu = "Enter a letter to choose an option :\n e - Enter preferences\n r - Get recommendations\n p - Show most " \
-           "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n d - Delete Preferences\n s - Show Preferences\n q - Save and " \
+           "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n d - Delete " \
+           "Preferences\n s - Show Preferences\n q - Save and " \
            "quit\n "
     filename = "musicrecplus_ex2_a.txt"
     database = db_load.load_database(filename)
@@ -90,9 +94,9 @@ def main():
         elif user_choice == "m":
             user_most_likes()
         elif user_choice == "d":
-            delete_preferences(username,database)
+            delete_preferences(database, username)
         elif user_choice == "s":
-            show_preferences(username,database)
+            show_preferences(database, username)
         else:
             print("Invalid choice!\n")
         print(menu)
