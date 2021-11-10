@@ -2,9 +2,9 @@
 # Pledge: I pledge my honor that I have abided by the Stevens Honor System.
 
 
-from sort import *  # search and sort functions
-import database_loader as db_load
-import data_manager  #
+from sort import *  # sort functions
+import database_loader as db_load  # load_database and save_database functions
+import data_manager  # all functions involing interaction with the database
 
 
 def enter_preferences(database, username):
@@ -21,7 +21,6 @@ def get_recommendations(database, username):
     """Prints recommended artists for the user based on their own preferences."""
     recommendations = data_manager.findRecommendations(database, username)
     sort(recommendations)
-    print("Recommendations:")
     if len(recommendations) <= 0:
         print("No recommendations available at this time.")
     else:
