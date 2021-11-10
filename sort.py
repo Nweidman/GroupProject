@@ -29,5 +29,3 @@ def sort(artistList):
             artistList[indexMain] = rightList[indexRight]
             indexRight += 1
             indexMain += 1 #All remaining parts of the right list if right is greater than left at that time, run through here to set remaining values of index main to rightList
-    else: 
-        return artistList
