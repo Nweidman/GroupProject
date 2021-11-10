@@ -1,3 +1,4 @@
+import sort
 def load_database(filename):
     dic = {}
     myfile = open(filename, "a")
@@ -12,7 +13,7 @@ def load_database(filename):
 
 def save_database(dic, filename):
     keyList = list(dic.keys())
-    keyList = sort(keyList)
+    sort.sort(keyList)
     myfile = open(filename, 'w')
     for item in keyList:
         string = item + ":"
