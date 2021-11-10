@@ -72,7 +72,7 @@ def main():
            "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n d - Delete " \
            "Preferences\n s - Show Preferences\n q - Save and " \
            "quit\n "
-    filename = "musicrecplus_ex2_a.txt"
+    filename = "musicrecplus.txt"
     database = db_load.load_database(filename)
     username = input("Enter your name ( put a $ symbol after your name if you wish your preferences to remain private "
                      "): ")
