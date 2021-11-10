@@ -2,6 +2,9 @@ from sort import *
 
 
 def update_database(database, preferences):
+    """Assume database is a dictionary and preferences is a 2-element list.
+    This method changes the preferences of the user given by preferences[0] using the liked artists specified by
+    preferences[1]."""
     # Exception handling
     if type(database) != dict:
         raise Exception("database must be a dictionary!")
@@ -46,6 +49,9 @@ def compareUsers(list_a, list_b):
 
 
 def findRecommendations(database, username):
+    """Returns a list of recommendations for the user 'username'. This is determined by finding the user with
+    the most shared preferences with username that also has at least one liked artist not in username's preferences.
+    Private mode users are not considered in this calculation."""
     maxMatches = 0
     recommendations = []
     for otherUser in database:

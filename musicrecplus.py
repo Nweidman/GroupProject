@@ -1,9 +1,14 @@
+# Names: Matthew Angelakos, Nicholas Weidman, Winston Lee
+# Pledge: I pledge my honor that I have abided by the Stevens Honor System.
+
+
 from sort import *  # search and sort functions
 import database_loader as db_load
 import data_manager  #
 
 
 def enter_preferences(database, username):
+    """Prompts the user to enter new liked artists, and replaces any previous preferences."""
     liked_artists = []
     artist = input("Enter an artist that you like ( Enter to finish ): ")
     while artist != "":
@@ -13,6 +18,7 @@ def enter_preferences(database, username):
 
 
 def get_recommendations(database, username):
+    """Prints recommended artists for the user based on their own preferences."""
     recommendations = data_manager.findRecommendations(database, username)
     sort(recommendations)
     print("Recommendations:")
@@ -36,6 +42,7 @@ def user_most_likes():
 
 
 def main():
+    """Main method for running the music recommender."""
     # Loading data and user
     menu = "Enter a letter to choose an option :\n e - Enter preferences\n r - Get recommendations\n p - Show most " \
            "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n q - Save and " \

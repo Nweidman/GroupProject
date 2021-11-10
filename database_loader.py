@@ -1,4 +1,6 @@
 import sort
+
+
 def load_database(filename):
     """Takes in a file, filename, and creates it if the filename does not
     already exist. If the file does exist, it opens the file and returns
