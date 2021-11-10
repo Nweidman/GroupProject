@@ -1,10 +1,6 @@
-from search_and_sort import *  # search and sort functions
+from sort import *  # search and sort functions
 import database_loader as db_load
 import data_manager  #
-
-menu = "Enter a letter to choose an option :\n e - Enter preferences\n r - Get recommendations\n p - Show most " \
-       "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n q - Save and quit\n"
-filename = "musicrecplus.txt"
 
 
 def enter_preferences(database, username):
@@ -16,8 +12,15 @@ def enter_preferences(database, username):
     data_manager.update_database(database, [username, liked_artists])
 
 
-def get_recommendations():
-    pass
+def get_recommendations(database, username):
+    recommendations = data_manager.findRecommendations(database, username)
+    sort(recommendations)
+    print("Recommendations:")
+    if len(recommendations) <= 0:
+        print("No recommendations available at this time.")
+    else:
+        for i in range(len(recommendations)):
+            print(recommendations[i])
 
 
 def show_most_popular():
@@ -34,6 +37,10 @@ def user_most_likes():
 
 def main():
     # Loading data and user
+    menu = "Enter a letter to choose an option :\n e - Enter preferences\n r - Get recommendations\n p - Show most " \
+           "popular artists\n h - How popular is the most popular\n m - Which user has the most likes\n q - Save and " \
+           "quit\n "
+    filename = "musicrecplus.txt"
     database = db_load.load_database(filename)
     username = input("Enter your name ( put a $ symbol after your name if you wish your preferences to remain private "
                      "): ")
@@ -47,7 +54,7 @@ def main():
         if user_choice == "e":
             enter_preferences(database, username)
         elif user_choice == "r":
-            get_recommendations()
+            get_recommendations(database, username)
         elif user_choice == "p":
             show_most_popular()
         elif user_choice == "h":
@@ -56,6 +63,8 @@ def main():
             user_most_likes()
         else:
             print("Invalid choice!\n")
+        print(menu)
+        user_choice = input()
 
     # Save and quit
     db_load.save_database(database, filename)
