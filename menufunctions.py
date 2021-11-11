@@ -81,7 +81,7 @@ def mostPopular(database):
             thirdMostPopular = howPopular
             thirdMostPopularArtist = howPopularKey
         elif howPopular == thirdMostPopular:#Same thing but with 3rdMostPopular
-            thirdMostPopularArtist = secondMostPopularArtist + ", " + howPopularKey
+            thirdMostPopularArtist = thirdMostPopularArtist + ", " + howPopularKey
         print(mostPopularArtist) #Print the stuff
         print(secondMostPopularArtist)
         print(thirdMostPopularArtist)
