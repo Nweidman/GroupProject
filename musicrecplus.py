@@ -29,14 +29,17 @@ def get_recommendations(database, username):
 
 
 def show_most_popular(database):
+    """Most popular aritst based on the example using a database"""
     data_manager.mostPopular2(database)
 
 
 def how_most_popular(database):
+    """how many people like the most popular artists from a database"""
     data_manager.howPopular(database)
 
 
 def user_most_likes(database):
+    """prints the user with the most liked artists, one per line and sorted if more than one"""
     data_manager.userMostLikes(database)
 
 

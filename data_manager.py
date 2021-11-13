@@ -65,7 +65,7 @@ def findRecommendations(database, username):
 
 
 def userMostLikes(database):
-    """returns the user with the most liked artists, one per line and sorted if more than one"""
+    """prints the user with the most liked artists, one per line and sorted if more than one"""
     keys = list(database.keys())  # Gets a list of keys from the database
     ch = "$"
     mostLikedArtists = []
@@ -202,8 +202,8 @@ def howPopular(database):
         print(mostPopularLikes)
 
 
-def mostPopular2(
-        database):  # Basically same as the first but only prints the most popular artist and if there is a tie print
+def mostPopular2(database):  # Basically same as the first but only prints the most popular artist and if there is a
+    # tie print
     # them out one on each line steming from a list
     """Most popular aritst based on the example using a database"""
     popularDB = {}
