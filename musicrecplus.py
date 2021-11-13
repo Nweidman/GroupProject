@@ -28,16 +28,16 @@ def get_recommendations(database, username):
             print(recommendations[i])
 
 
-def show_most_popular():
-    pass
+def show_most_popular(database):
+    data_manager.mostPopular2(database)
 
 
-def how_most_popular():
-    pass
+def how_most_popular(database):
+    data_manager.howPopular(database)
 
 
-def user_most_likes():
-    pass
+def user_most_likes(database):
+    data_manager.userMostLikes(database)
 
 
 def delete_preferences(database, username):
@@ -91,11 +91,11 @@ def main():
         elif user_choice == "r":
             get_recommendations(database, username)
         elif user_choice == "p":
-            show_most_popular()
+            show_most_popular(database)
         elif user_choice == "h":
-            how_most_popular()
+            how_most_popular(database)
         elif user_choice == "m":
-            user_most_likes()
+            user_most_likes(database)
         elif user_choice == "d":
             delete_preferences(database, username)
         elif user_choice == "s":
