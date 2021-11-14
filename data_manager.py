@@ -97,73 +97,19 @@ def userMostLikes(database):
 
 def mostPopular(database):
     """top 3 most popular aritsts using the pdf description from a database"""
-    popularDB = {}
-    itemIndex = 0
-    ch = "$"
-    keys = list(database.keys())  # same as above
-    Artists = list(database.items())  # same as above
-    for keyIndex in keys:  # If user is private skip
-        if ch in keyIndex:
-            itemIndex += 1
-        else:
-            popularArtists = Artists[itemIndex]  # same as above
-            popularArtists = popularArtists[1]
-            itemIndex += 1
-            for listIndex in popularArtists:  # Set the popularDB to the artists and the amount of times they appear
-                # in the normal db
-                if listIndex in popularDB:
-                    popularDB[listIndex] += 1
+    likeCount = {}
+    for user in database:
+        if user[-1] != '$':
+            for artist in database[user]:
+                if artist in likeCount:
+                    likeCount[artist] += 1
                 else:
-                    popularDB[listIndex] = 1
-    mostPopularLikes = 0
-    mostPopularArtist = ""
-    secondMostPopular = 0
-    secondMostPopularArtist = ""
-    thirdMostPopular = 0
-    thirdMostPopularArtist = ""  # Decleare the top 3 most popular aritsts and their numerical value
-    keys = list(popularDB.keys())  # same as above
-    Artists = list(popularDB.items())  # same as above
-    ItemIndex = 0
-    for itemIndex in Artists:
-        howPopularLikes = list(itemIndex)
-        print(howPopularLikes)
-        howPopularKey = howPopularLikes[0]
-        howPopularLikes = howPopularLikes[1]
-        if howPopularLikes > mostPopularLikes:  # Sees if the current artists is more popular than the most popular
-            # aritst if
-            # so set the mostPopular Artists to that and if there is a current most popular artists set the 2nd most
-            # popular artist to that
-            if mostPopularArtist != "":
-                if secondMostPopularArtist != "":
-                    thirdMostPopularArtist = secondMostPopularArtist
-                    thirdMostPopular = secondMostPopular
-                secondMostPopularArtist = mostPopularArtist
-                secondMostPopular = mostPopularLikes
-            mostPopularLikes = howPopularLikes
-            mostPopularArtist = howPopularKey
-        elif howPopularLikes == mostPopularLikes:  # Same thing as above but with no 2nd most popular becoming
-            # current most
-            # popular and instead adding onto the currentMost Popular Artist
-            mostPopularArtist = mostPopularArtist + ", " + howPopularKey
-        elif howPopularLikes > secondMostPopular:  # Same thing but with 2ndMostPopular
-            if secondMostPopularArtist != "":
-                thirdMostPopularArtist = secondMostPopularArtist
-                thirdMostPopular = secondMostPopular
-            secondMostPopular = howPopularLikes
-            secondMostPopularArtist = howPopularKey
-        elif howPopularLikes == secondMostPopular:  # Same thing but with 2ndMostPopular
-            secondMostPopularArtist = secondMostPopularArtist + ", " + howPopularKey
-        elif howPopularLikes > thirdMostPopular:  # Same thing but with 3rdMostPopular
-            thirdMostPopular = howPopularLikes
-            thirdMostPopularArtist = howPopularKey
-        elif howPopularLikes == thirdMostPopular:  # Same thing but with 3rdMostPopular
-            thirdMostPopularArtist = thirdMostPopularArtist + ", " + howPopularKey
-        print(mostPopularArtist)  # Print the stuff
-        print(secondMostPopularArtist)
-        print(thirdMostPopularArtist)
-    print(mostPopularArtist)  # Print the stuff
-    print(secondMostPopularArtist)
-    print(thirdMostPopularArtist)
+                    likeCount[artist] = 1
+    artistsSorted = sorted(likeCount, key=lambda artist: likeCount[artist])
+    if len(artistsSorted) >= 3:
+        return artistsSorted[:-4:-1]
+    else:
+        return artistsSorted
 
 
 def howPopular(database):

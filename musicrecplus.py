@@ -30,7 +30,12 @@ def get_recommendations(database, username):
 
 def show_most_popular(database):
     """Most popular aritst based on the example using a database"""
-    data_manager.mostPopular2(database)
+    mostPopular = data_manager.mostPopular(database)
+    if len(mostPopular) == 0:
+        print("Sorry, no artists found.")
+    else:
+        for artist in mostPopular:
+            print(artist)
 
 
 def how_most_popular(database):
